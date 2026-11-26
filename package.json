@@ -1,0 +1,11 @@
+{
+  "name": "sercle-byok-webhook-kek",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A one-click-deployable key-wrapping webhook for Sercle's Bring Your Own Key (BYOK) feature. Deploys to your own Vercel account; the key never leaves it.",
+  "devDependencies": {
+    "@vercel/node": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
