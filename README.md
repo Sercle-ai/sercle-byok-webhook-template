@@ -49,12 +49,24 @@ the very next request.
    ```
 3. Finish the deploy. Note your project's URL — it looks like
    `https://sercle-byok-webhook-yourteam.vercel.app`.
-4. In Sercle, go to **Team Settings → Security → Bring Your Own Key**, choose
+4. **Turn off Vercel's Deployment Protection for this project.** Vercel
+   enables this by default on new projects, and it sits in front of your
+   webhook, not behind it — it answers every request with its own `401`
+   and a redirect to Vercel's login page, before `AUTH_TOKEN` is ever
+   checked. The failure is silent: your webhook's own code and logs look
+   completely fine, because the request never reached them. In your
+   Vercel project, go to **Settings → Deployment Protection** and set it
+   to **Off** (or, if you'd rather leave it on, use Vercel's **Protection
+   Bypass for Automation** and send that secret as an additional header —
+   see [Vercel's docs](https://vercel.com/docs/deployment-protection) for
+   the exact header name). `AUTH_TOKEN` is this webhook's real access
+   control either way.
+5. In Sercle, go to **Team Settings → Security → Bring Your Own Key**, choose
    **Custom webhook**, and enter:
    - **Webhook URL**: the URL from step 3
    - **Auth token**: the `AUTH_TOKEN` value from step 2 (the *same* value —
      this is how Sercle authenticates to your webhook, not a separate secret)
-5. Click **Test connection**. Sercle calls `GET /api/health` with that token
+6. Click **Test connection**. Sercle calls `GET /api/health` with that token
    to confirm `ROOT_KEY` is set correctly before relying on this webhook for
    anything real.
 

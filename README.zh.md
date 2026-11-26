@@ -44,12 +44,21 @@ Sercle 服务器                              你的 Vercel 项目(这个 webhoo
    ```
 3. 完成部署,记下项目的 URL,类似
    `https://sercle-byok-webhook-yourteam.vercel.app`。
-4. 回到 Sercle,进 **团队设置 → 安全 → Bring Your Own Key**,选
+4. **关掉这个项目的 Vercel Deployment Protection。** Vercel 新建项目默认
+   会开这个功能,而且它挡在你的 webhook **前面**而不是后面——不管
+   `AUTH_TOKEN` 对不对,它都会先一步用自己的 `401` 和登录页跳转把请求挡回去。
+   这个失败是悄无声息的:你的 webhook 自己的代码和日志看起来完全正常,因为
+   请求根本没进来过。在 Vercel 项目里进 **Settings → Deployment
+   Protection**,设成 **Off**(如果你想继续开着,也可以用 Vercel 的
+   **Protection Bypass for Automation**,在请求里多带一个密钥头——具体头名
+   见 [Vercel 文档](https://vercel.com/docs/deployment-protection))。不管
+   哪种,真正管访问控制的还是 `AUTH_TOKEN`。
+5. 回到 Sercle,进 **团队设置 → 安全 → Bring Your Own Key**,选
    **自定义 webhook**,填入:
    - **Webhook URL**:第 3 步拿到的那个地址
    - **Auth token**:第 2 步的 `AUTH_TOKEN` 值(是**同一个值**——这是
      Sercle 用来向你的 webhook 证明身份的,不是另外一个密钥)
-5. 点 **测试连接**。Sercle 会带着这个 token 调一次 `GET /api/health`,
+6. 点 **测试连接**。Sercle 会带着这个 token 调一次 `GET /api/health`,
    确认 `ROOT_KEY` 配置正确,之后才会真正依赖这个 webhook。
 
 就这些——不用碰云厂商的 IAM,也不用进任何控制台配权限。Vercel 的免费额度
