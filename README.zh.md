@@ -53,13 +53,16 @@ Sercle 服务器                              你的 Vercel 项目(这个 webhoo
    **Protection Bypass for Automation**,在请求里多带一个密钥头——具体头名
    见 [Vercel 文档](https://vercel.com/docs/deployment-protection))。不管
    哪种,真正管访问控制的还是 `AUTH_TOKEN`。
-5. 回到 Sercle,进 **团队设置 → 安全 → Bring Your Own Key**,选
-   **自定义 webhook**,填入:
+5. 回到 Sercle,进 **Teams**,打开你的团队,找到 **Bring Your Own Key**
+   这一行,点 **Connect**,填入:
    - **Webhook URL**:第 3 步拿到的那个地址
    - **Auth token**:第 2 步的 `AUTH_TOKEN` 值(是**同一个值**——这是
      Sercle 用来向你的 webhook 证明身份的,不是另外一个密钥)
-6. 点 **测试连接**。Sercle 会带着这个 token 调一次 `GET /api/health`,
-   确认 `ROOT_KEY` 配置正确,之后才会真正依赖这个 webhook。
+6. 点 **测试连接**,再点 **保存并生成 key**。Sercle 会先带着这个 token
+   调一次 `GET /api/health`,确认 `ROOT_KEY` 配置正确,然后才会生成你团队
+   的 key(用这个 webhook 包裹)。连接成功后会出现一个 **测试一下** 按钮——
+   随时点一下,就能完整走一遍"通过你的 webhook 加密再解密"的流程,确认链路
+   没问题。
 
 就这些——不用碰云厂商的 IAM,也不用进任何控制台配权限。Vercel 的免费额度
 完全够用。

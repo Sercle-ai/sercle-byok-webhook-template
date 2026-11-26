@@ -61,14 +61,17 @@ the very next request.
    see [Vercel's docs](https://vercel.com/docs/deployment-protection) for
    the exact header name). `AUTH_TOKEN` is this webhook's real access
    control either way.
-5. In Sercle, go to **Team Settings → Security → Bring Your Own Key**, choose
-   **Custom webhook**, and enter:
+5. In Sercle, go to **Teams**, open your team, and find the **Bring Your
+   Own Key** row. Click **Connect** and enter:
    - **Webhook URL**: the URL from step 3
    - **Auth token**: the `AUTH_TOKEN` value from step 2 (the *same* value —
      this is how Sercle authenticates to your webhook, not a separate secret)
-6. Click **Test connection**. Sercle calls `GET /api/health` with that token
-   to confirm `ROOT_KEY` is set correctly before relying on this webhook for
-   anything real.
+6. Click **Test connection**, then **Save and generate key**. Sercle calls
+   `GET /api/health` with that token to confirm `ROOT_KEY` is set correctly
+   before relying on this webhook for anything real, then generates your
+   team's key, wrapped under it. A **Run a test** button appears once
+   connected — it encrypts and decrypts a value through your webhook end to
+   end, so you can confirm the whole path works any time.
 
 That's it — no cloud IAM, no console access to configure. Vercel's free
 tier comfortably covers the request volume this generates.
