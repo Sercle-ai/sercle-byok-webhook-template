@@ -11,7 +11,7 @@ already have a cloud account you'd rather use, or if you just want the
 simplest, cheapest path: no IAM roles, no cloud console — a few minutes and
 two values.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle%2Ftree%2Fmain%2Fbyok-templates%2Fvercel-webhook-kek&env=ROOT_KEY,AUTH_TOKEN&envDescription=Two%20secrets%20this%20webhook%20needs.%20Generate%20with%20the%20commands%20in%20the%20README.&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle%2Ftree%2Fmain%2Fbyok-templates%2Fvercel-webhook-kek%23setup&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=Two%20secrets%20this%20webhook%20needs.%20Generate%20with%20the%20commands%20in%20the%20README.&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23setup&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
 
 ## How it works
 
@@ -47,6 +47,14 @@ the very next request.
    # AUTH_TOKEN -- just proves a request is really from Sercle. Any random string works.
    openssl rand -hex 32
    ```
+   **Mark both as "Sensitive"** in the environment variable form (there's a
+   toggle next to the value field). Vercel does not do this by default --
+   an env var added the normal way is stored in a form anyone with access
+   to this Vercel project can read back from the dashboard or API. These
+   two values are the whole point of this template; don't leave them
+   readable. If you forget this step, you can fix it later in **Settings →
+   Environment Variables**: delete the variable and re-add it with
+   Sensitive turned on (editing in place doesn't retroactively protect it).
 3. Finish the deploy. Note your project's URL — it looks like
    `https://sercle-byok-webhook-yourteam.vercel.app`.
 4. **Turn off Vercel's Deployment Protection for this project.** Vercel

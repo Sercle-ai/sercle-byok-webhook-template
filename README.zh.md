@@ -9,7 +9,7 @@
 想要最简单、最便宜的路——不用碰 IAM、不用进云控制台,几分钟、两个值就够了——
 选这个。
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle%2Ftree%2Fmain%2Fbyok-templates%2Fvercel-webhook-kek&env=ROOT_KEY,AUTH_TOKEN&envDescription=%E8%BF%99%E4%B8%AA%20webhook%20%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4%E8%A7%81%20README&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle%2Ftree%2Fmain%2Fbyok-templates%2Fvercel-webhook-kek%23%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=%E8%BF%99%E4%B8%AA%20webhook%20%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4%E8%A7%81%20README&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
 
 ## 工作原理
 
@@ -42,6 +42,12 @@ Sercle 服务器                              你的 Vercel 项目(这个 webhoo
    # AUTH_TOKEN —— 只是用来证明请求确实来自 Sercle,随便一个随机字符串就行
    openssl rand -hex 32
    ```
+   **填的时候把这两个都标成"Sensitive"**(值旁边有个开关)。Vercel
+   默认**不会**这么做——普通方式加的环境变量,任何有这个 Vercel 项目访问
+   权限的人都能在后台或 API 里把值读回来。这两个值正是这套方案的核心,
+   别让它们能被明文读到。如果忘了这步,之后也能补:去 **Settings →
+   Environment Variables** 把这个变量删掉、重新加一遍并打开 Sensitive
+   (直接编辑现有的那个不会事后变成加密保护)。
 3. 完成部署,记下项目的 URL,类似
    `https://sercle-byok-webhook-yourteam.vercel.app`。
 4. **关掉这个项目的 Vercel Deployment Protection。** Vercel 新建项目默认
