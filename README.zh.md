@@ -9,7 +9,7 @@
 想要最简单、最便宜的路——不用碰 IAM、不用进云控制台,几分钟、两个值就够了——
 选这个。
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=%E8%BF%99%E4%B8%AA%20webhook%20%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4%E8%A7%81%20README&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=%E8%BF%99%E4%B8%AA%20webhook%20%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4%E8%A7%81%20README&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4&project-name=sercle-byok-webhook)
 
 ## 工作原理
 
@@ -33,7 +33,9 @@ Sercle 服务器                              你的 Vercel 项目(这个 webhoo
 ## 设置步骤
 
 1. 点上面的 **Deploy with Vercel**,会把这个模板 fork 到你自己的 Vercel
-   账号下。
+   账号下。如果之前有一次部署失败了,可能已经在你 GitHub 账号下建了一个
+   同名仓库——这里 Vercel 建议的名字如果已经被占用,换一个名字就行,或者
+   先把之前留下的那个仓库删掉,再用原来的名字。
 2. 部署过程会提示你填两个环境变量,生成方式如下:
    ```bash
    # ROOT_KEY —— 真正保护你数据的那把 key,要像保护密码一样保护它

@@ -11,7 +11,7 @@ already have a cloud account you'd rather use, or if you just want the
 simplest, cheapest path: no IAM roles, no cloud console — a few minutes and
 two values.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=Two%20secrets%20this%20webhook%20needs.%20Generate%20with%20the%20commands%20in%20the%20README.&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23setup&project-name=sercle-byok-webhook&repository-name=sercle-byok-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template&env=ROOT_KEY,AUTH_TOKEN&envDescription=Two%20secrets%20this%20webhook%20needs.%20Generate%20with%20the%20commands%20in%20the%20README.&envLink=https%3A%2F%2Fgithub.com%2FSercle-ai%2Fsercle-byok-webhook-template%23setup&project-name=sercle-byok-webhook)
 
 ## How it works
 
@@ -37,7 +37,10 @@ the very next request.
 ## Setup
 
 1. Click **Deploy with Vercel** above. It forks this template into your own
-   Vercel account.
+   Vercel account. If a previous attempt failed partway through, it may
+   have already created a GitHub repo under your account before failing --
+   pick a different name here if the one Vercel suggests is already taken,
+   or delete the leftover repo first and reuse its name.
 2. When prompted for environment variables, generate two values and paste
    them in:
    ```bash
